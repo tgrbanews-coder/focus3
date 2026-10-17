@@ -1,0 +1,176 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: var(--font-cairo), "Cairo", "Segoe UI", sans-serif;
+  --color-paper: #f3f0e8;
+  --color-paper-2: #fbf9f4;
+  --color-ink: #1c1916;
+  --color-muted: #6e675e;
+  --color-line: #e4ddd1;
+  --color-ember: #d4652f;
+  --color-ember-deep: #9c4318;
+  --color-moss: #1f7a4d;
+  --color-moss-solid: #1f7a4d;
+  --color-card: #fffcf8;
+}
+
+.dark {
+  --color-paper: #12110f;
+  --color-paper-2: #1c1a17;
+  --color-ink: #f4f0e8;
+  --color-muted: #b7b0a4;
+  --color-line: #34302a;
+  --color-ember: #ee8b52;
+  --color-ember-deep: #ffc29a;
+  --color-moss: #7dccaa;
+  --color-card: #1e1c19;
+}
+
+html {
+  color-scheme: light;
+  background: var(--color-paper);
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  min-height: 100dvh;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--color-ember) 35%, white);
+}
+
+.card {
+  border: 1px solid var(--color-line);
+  border-radius: 1.5rem;
+  background: var(--color-card);
+  box-shadow: 0 18px 40px -32px rgb(48 28 10 / 0.55);
+}
+
+.field {
+  width: 100%;
+  min-height: 3rem;
+  border-radius: 1rem;
+  border: 1px solid var(--color-line);
+  background: var(--color-paper-2);
+  padding-inline: 0.9rem;
+  color: var(--color-ink);
+  outline: none;
+}
+
+.field:focus {
+  border-color: var(--color-ember);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-ember) 28%, transparent);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 2.75rem;
+  border-radius: 999px;
+  padding-inline: 1rem;
+  font-weight: 700;
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.btn:focus-visible,
+.field:focus-visible,
+.icon-btn:focus-visible {
+  outline: 2px solid var(--color-ember);
+  outline-offset: 2px;
+}
+
+.btn-primary {
+  background: #d4652f;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: #9c4318;
+}
+
+.btn-ghost {
+  border: 1px solid var(--color-line);
+  background: transparent;
+  color: var(--color-ink);
+}
+
+.btn-ghost:hover {
+  border-color: var(--color-ember);
+}
+
+.btn-quiet {
+  min-height: 2.5rem;
+  padding-inline: 0.75rem;
+  color: var(--color-muted);
+}
+
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  color: var(--color-muted);
+}
+
+.icon-btn:hover {
+  background: color-mix(in oklab, var(--color-ink) 6%, transparent);
+  color: var(--color-ink);
+}
+
+.icon-btn:disabled {
+  opacity: 0.35;
+}
+
+.focus-stage {
+  background:
+    radial-gradient(ellipse at center, color-mix(in oklab, var(--color-ember) 16%, transparent), transparent 58%),
+    var(--color-paper);
+}
+
+dialog {
+  width: min(100% - 2rem, 36rem);
+  max-height: min(100dvh - 2rem, 44rem);
+  overflow: auto;
+  border: 1px solid var(--color-line);
+  border-radius: 1.5rem;
+  padding: 0;
+  background: var(--color-card);
+  color: var(--color-ink);
+}
+
+dialog::backdrop {
+  background: rgb(20 16 12 / 0.48);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
